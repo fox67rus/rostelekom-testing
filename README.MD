@@ -1,0 +1,35 @@
+Описание
+------------
+В данном репозитории находится **Итоговый проект по автоматизации тестирования**
+
+
+
+Файлы
+-----
+
+[conftest.py](conftest.py) contains all the required code to catch failed test cases and make screenshot
+of the page in case any test case will fail.
+
+[pages/base.py](pages/base.py) contains PageObject pattern implementation for Python.
+
+[pages/elements.py](pages/elements.py) contains helper class to define web elements on web pages.
+
+[tests/test_smoke_yandex_market.py](tests/test_smoke_yandex_market.py) contains several smoke Web UI tests for YandexMarket (https://market.yandex.ru/)
+
+
+Инструкция по запуску
+----------------
+
+1) Установить все необходимые библиотеки:
+
+    ```bash
+    pip install -r requirements
+    ```
+
+2) Скачать Selenium WebDriver по [ссылке](https://chromedriver.chromium.org/downloads) (выбрать версию в соответствии со своим браузером). И положить файл в корневой каталог проекта.
+
+3) Запуск тестов:
+
+    ```bash
+    python -m pytest -v --driver Chrome --driver-path chromedriver.exe tests/*
+    ```
