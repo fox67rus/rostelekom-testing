@@ -10,11 +10,10 @@
 [conftest.py](conftest.py) contains all the required code to catch failed test cases and make screenshot
 of the page in case any test case will fail.
 
-[pages/base.py](pages/base.py) contains PageObject pattern implementation for Python.
+[pages/base_page.py](pages/base_page.py) contains PageObject pattern implementation for Python.
 
-[pages/elements.py](pages/elements.py) contains helper class to define web elements on web pages.
+[pages/auth_page.py](pages/auth_page.py) contains helper class to define web elements on web pages.
 
-[tests/test_smoke_yandex_market.py](tests/test_smoke_yandex_market.py) contains several smoke Web UI tests for YandexMarket (https://market.yandex.ru/)
 
 
 Инструкция по запуску
