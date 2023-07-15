@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 
+from pages.base_page import BasePage
+
 
 class AuthPageLocators:
     LOCATOR_AUTH_PAGE_TAB_PHONE = (By.ID, 't-btn-tab-phone')
@@ -17,9 +19,16 @@ class AuthPageLocators:
     LOCATOR_AUTH_PAGE_BUTTON_FORGOTPASSWORD = (By.ID, 'forgot_password')
 
 
+class AuthPage(BasePage):
 
+    def enter_login(self, login_value):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_USERNAME).send_keys(login_value)
 
+    def enter_password(self, password_value):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD).send_keys(password_value)
 
+    def click_to_login_button_(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_SUBMIT).click()
 
 
 
