@@ -31,4 +31,5 @@ of the page in case any test case will fail.
 
     ```bash
     python -m pytest -v --driver Chrome --driver-path chromedriver.exe tests/*
+    python -m pytest -v -s # вывод доп. информации
     ```
