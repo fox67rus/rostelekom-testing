@@ -29,9 +29,3 @@ class AuthPage(BasePage):
 
     def click_to_login_button_(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_SUBMIT).click()
-
-
-
-
-
-
