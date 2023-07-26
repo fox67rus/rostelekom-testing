@@ -7,7 +7,6 @@ from config import *
 from pages.auth_page import AuthPage
 
 
-@pytest.mark.skip(reason="no way of currently testing this")
 def test_open_auth_page(browser):
     """
     Проверка корректного открытия формы авторизации
@@ -15,7 +14,7 @@ def test_open_auth_page(browser):
     auth = AuthPage(browser)
     auth.go_to_site()
     assert auth.find_element((By.CSS_SELECTOR, ".card-container__title")).text == "Авторизация"
-    sleep(10)  # для контроля
+    sleep(5)  # для контроля
 
 
 def test_active_tab_is_phone(browser):
@@ -27,7 +26,7 @@ def test_active_tab_is_phone(browser):
     assert auth.active_tab_text() == "Телефон"
 
 
-@pytest.mark.skip(reason="no way of currently testing this")
+@pytest.mark.skip(reason="there is currently no need to test this")
 def test_login_with_email(browser):
     """
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
@@ -40,4 +39,5 @@ def test_login_with_email(browser):
     auth.click_to_login_button()
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
-    sleep(10)
+    sleep(5)  # для контроля
+
