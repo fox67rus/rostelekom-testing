@@ -19,6 +19,8 @@ class AuthPageLocators:
 
     LOCATOR_AUTH_PAGE_BUTTON_FORGOT_PASSWORD = (By.ID, 'forgot_password')
 
+    LOCATOR_AUTH_PAGE_LINK_AGREEMENT = (By.LINK_TEXT, 'пользовательского соглашения')
+
 
 class AuthPage(BasePage):
 
@@ -58,3 +60,6 @@ class AuthPage(BasePage):
 
     def click_to_tab_ls(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_TAB_LS).click()
+
+    def click_to_agreement_link(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_AGREEMENT).click()
