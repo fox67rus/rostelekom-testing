@@ -27,7 +27,7 @@ def test_active_tab_is_phone(browser):
     """
     auth = AuthPage(browser)
     auth.go_to_site()
-    assert auth.active_tab_text() == "Телефон"
+    assert auth.get_active_tab_text() == "Телефон"
 
 
 # 3
@@ -58,7 +58,7 @@ def test_auto_change_tab_email(browser):
     auth.go_to_site()
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
-    assert auth.active_tab_text() == "Почта"
+    assert auth.get_active_tab_text() == "Почта"
     sleep(3)  # для контроля
 
 
@@ -66,14 +66,14 @@ def test_auto_change_tab_email(browser):
 @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_login(browser):
     """
-    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+    Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
 
     """
     auth = AuthPage(browser)
     auth.go_to_site()
     auth.enter_login(VALID_LOGIN)
     auth.enter_password(VALID_PASSWORD)
-    assert auth.active_tab_text() == "Логин"
+    assert auth.get_active_tab_text() == "Логин"
     sleep(3)  # для контроля
 
 
@@ -81,7 +81,7 @@ def test_auto_change_tab_login(browser):
 # @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_phone(browser):
     """
-    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+    Проверка, что при вводе мобильного телефона таб выбора аутентификации меняется на Номер
 
     """
     auth = AuthPage(browser)
@@ -89,12 +89,16 @@ def test_auto_change_tab_phone(browser):
     # переключаем таб на логин
     auth.enter_login(VALID_LOGIN)
     auth.enter_password(VALID_PASSWORD)
-    assert auth.active_tab_text() == "Логин"
+    assert auth.get_active_tab_text() == "Логин"
     sleep(2)  # для контроля
+
+    # очищаем поля
+    auth.clear_login()
+    auth.clear_password()
+    sleep(5)  # для контроля
+    assert auth.get_login_value() == "", 'Поля не очищены'
 
     auth.enter_login(VALID_PHONE)
     auth.enter_password(VALID_PASSWORD)
     sleep(5)  # для контроля
-    assert auth.active_tab_text() == "Телефон"
-
-
+    assert auth.get_active_tab_text() == "Телефон"
