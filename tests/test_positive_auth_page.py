@@ -7,6 +7,8 @@ from config import *
 from pages.auth_page import AuthPage
 
 
+# 1
+@pytest.mark.skip(reason="there is currently no need to test this")
 def test_open_auth_page(browser):
     """
     Проверка корректного открытия формы авторизации
@@ -17,15 +19,18 @@ def test_open_auth_page(browser):
     sleep(5)  # для контроля
 
 
+# 2
+@pytest.mark.skip(reason="there is currently no need to test this")
 def test_active_tab_is_phone(browser):
     """
-    Проверка выбора по умолчанию формы авторизации по телефону
+    Проверка выбора по умолчанию таба авторизации по телефону
     """
     auth = AuthPage(browser)
     auth.go_to_site()
     assert auth.active_tab_text() == "Телефон"
 
 
+# 3
 @pytest.mark.skip(reason="there is currently no need to test this")
 def test_login_with_email(browser):
     """
@@ -40,4 +45,56 @@ def test_login_with_email(browser):
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
     sleep(5)  # для контроля
+
+
+# 4
+@pytest.mark.skip(reason="there is currently no need to test this")
+def test_auto_change_tab_email(browser):
+    """
+    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.enter_login(VALID_EMAIL)
+    auth.enter_password(VALID_PASSWORD)
+    assert auth.active_tab_text() == "Почта"
+    sleep(3)  # для контроля
+
+
+# 5
+@pytest.mark.skip(reason="there is currently no need to test this")
+def test_auto_change_tab_login(browser):
+    """
+    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.enter_login(VALID_LOGIN)
+    auth.enter_password(VALID_PASSWORD)
+    assert auth.active_tab_text() == "Логин"
+    sleep(3)  # для контроля
+
+
+# 6
+# @pytest.mark.skip(reason="there is currently no need to test this")
+def test_auto_change_tab_phone(browser):
+    """
+    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    # переключаем таб на логин
+    auth.enter_login(VALID_LOGIN)
+    auth.enter_password(VALID_PASSWORD)
+    assert auth.active_tab_text() == "Логин"
+    sleep(2)  # для контроля
+
+    auth.enter_login(VALID_PHONE)
+    auth.enter_password(VALID_PASSWORD)
+    sleep(5)  # для контроля
+    assert auth.active_tab_text() == "Телефон"
+
 
