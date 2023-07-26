@@ -8,7 +8,7 @@ from pages.auth_page import AuthPage
 
 
 # 1
-@pytest.mark.skip(reason="there is currently no need to test this")
+# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_open_auth_page(browser):
     """
     Проверка корректного открытия формы авторизации
@@ -16,11 +16,11 @@ def test_open_auth_page(browser):
     auth = AuthPage(browser)
     auth.go_to_site()
     assert auth.find_element((By.CSS_SELECTOR, ".card-container__title")).text == "Авторизация"
-    sleep(5)  # для контроля
+    # sleep(5)  # для контроля
 
 
 # 2
-@pytest.mark.skip(reason="there is currently no need to test this")
+# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_active_tab_is_phone(browser):
     """
     Проверка выбора по умолчанию таба авторизации по телефону
@@ -31,8 +31,8 @@ def test_active_tab_is_phone(browser):
 
 
 # 3
-@pytest.mark.skip(reason="there is currently no need to test this")
-def test_login_with_email(browser):
+# @pytest.mark.skip(reason="there is currently no need to test this")
+def test_login_with_email_on_button_click(browser):
     """
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
     """
@@ -40,15 +40,14 @@ def test_login_with_email(browser):
     auth.go_to_site()
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
-    sleep(5)
     auth.click_to_login_button()
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
-    sleep(5)  # для контроля
+    # sleep(5)  # для контроля
 
 
 # 4
-@pytest.mark.skip(reason="there is currently no need to test this")
+# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_email(browser):
     """
     Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
@@ -58,11 +57,11 @@ def test_auto_change_tab_email(browser):
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
     assert auth.get_active_tab_text() == "Почта"
-    sleep(3)  # для контроля
+    # sleep(3)  # для контроля
 
 
 # 5
-@pytest.mark.skip(reason="there is currently no need to test this")
+# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_login(browser):
     """
     Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
@@ -72,7 +71,7 @@ def test_auto_change_tab_login(browser):
     auth.enter_login(VALID_LOGIN)
     auth.enter_password(VALID_PASSWORD)
     assert auth.get_active_tab_text() == "Логин"
-    sleep(3)  # для контроля
+    # sleep(3)  # для контроля
 
 
 # 6
@@ -88,29 +87,27 @@ def test_auto_change_tab_ls(browser):
     auth.enter_login(VALID_LS)
     auth.enter_password(VALID_PASSWORD)
     assert auth.get_active_tab_text() == "Лицевой счёт"
-    sleep(3)  # для контроля
+    # sleep(3)  # для контроля
 
 
 # 7
 # @pytest.mark.skip(reason="there is currently no need to test this")
-def test_auto_change_tab_phone(browser):
+@pytest.mark.current
+def test_auto_change_tab_phone_from_login(browser):
     """
-    Проверка, что при вводе мобильного телефона таб выбора аутентификации меняется на Номер
+    Проверка, что при вводе мобильного телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
     """
     auth = AuthPage(browser)
     auth.go_to_site()
     # переключаем таб на логин
     auth.click_to_tab_login()
     assert auth.get_active_tab_text() == "Логин"
-    sleep(2)  # для контроля
-
     # очищаем поля
     auth.clear_login()
     auth.clear_password()
-    sleep(5)  # для контроля
     assert auth.get_login_value() == "", 'Поля не очищены'
 
     auth.enter_login(VALID_PHONE)
     auth.enter_password(VALID_PASSWORD)
-    sleep(5)  # для контроля
+    # sleep(3)  # для контроля
     assert auth.get_active_tab_text() == "Телефон"
