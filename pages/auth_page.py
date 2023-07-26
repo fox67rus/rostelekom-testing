@@ -1,4 +1,4 @@
-from selenium.webdriver import Keys, ActionChains
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
@@ -17,7 +17,7 @@ class AuthPageLocators:
 
     LOCATOR_AUTH_PAGE_CHECKBOX_REMEMBERME = (By.NAME, 'rememberMe')
 
-    LOCATOR_AUTH_PAGE_BUTTON_FORGOTPASSWORD = (By.ID, 'forgot_password')
+    LOCATOR_AUTH_PAGE_BUTTON_FORGOT_PASSWORD = (By.ID, 'forgot_password')
 
 
 class AuthPage(BasePage):
@@ -46,3 +46,15 @@ class AuthPage(BasePage):
 
     def get_active_tab_text(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ACTIVE_TAB).text
+
+    def click_to_tab_phone(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_TAB_PHONE).click()
+
+    def click_to_tab_email(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_TAB_EMAIL).click()
+
+    def click_to_tab_login(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_TAB_LOGIN).click()
+
+    def click_to_tab_ls(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_TAB_LS).click()
