@@ -27,6 +27,12 @@ class AuthPage(BasePage):
     def enter_password(self, password_value):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD).send_keys(password_value)
 
+    def clear_login(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_USERNAME).clear()
+
+    def clear_password(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD).clear()
+
     def click_to_login_button(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_SUBMIT).click()
 
