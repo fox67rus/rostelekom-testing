@@ -1,3 +1,4 @@
+from selenium.webdriver import Keys, ActionChains
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
@@ -27,14 +28,21 @@ class AuthPage(BasePage):
     def enter_password(self, password_value):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD).send_keys(password_value)
 
+    def get_login_value(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_USERNAME).get_attribute('value')
+
     def clear_login(self):
-        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_USERNAME).clear()
+        login_field = self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_USERNAME)
+        login_field.send_keys(Keys.CONTROL + "a")
+        login_field.send_keys(Keys.DELETE)
 
     def clear_password(self):
-        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD).clear()
+        password_field = self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_FIELD_PASSWORD)
+        password_field.send_keys(Keys.CONTROL + "a")
+        password_field.send_keys(Keys.DELETE)
 
     def click_to_login_button(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_SUBMIT).click()
 
-    def active_tab_text(self):
+    def get_active_tab_text(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ACTIVE_TAB).text
