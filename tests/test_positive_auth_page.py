@@ -52,7 +52,6 @@ def test_login_with_email(browser):
 def test_auto_change_tab_email(browser):
     """
     Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
-
     """
     auth = AuthPage(browser)
     auth.go_to_site()
@@ -67,7 +66,6 @@ def test_auto_change_tab_email(browser):
 def test_auto_change_tab_login(browser):
     """
     Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
-
     """
     auth = AuthPage(browser)
     auth.go_to_site()
@@ -79,16 +77,30 @@ def test_auto_change_tab_login(browser):
 
 # 6
 # @pytest.mark.skip(reason="there is currently no need to test this")
+def test_auto_change_tab_ls(browser):
+    """
+    Проверка, что при вводе лицевого счёта таб выбора аутентификации меняется на Лицевой счёт
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    # Выбираем таб Почта
+    auth.click_to_tab_email()
+    auth.enter_login(VALID_LS)
+    auth.enter_password(VALID_PASSWORD)
+    assert auth.get_active_tab_text() == "Лицевой счёт"
+    sleep(3)  # для контроля
+
+
+# 7
+# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_phone(browser):
     """
     Проверка, что при вводе мобильного телефона таб выбора аутентификации меняется на Номер
-
     """
     auth = AuthPage(browser)
     auth.go_to_site()
     # переключаем таб на логин
-    auth.enter_login(VALID_LOGIN)
-    auth.enter_password(VALID_PASSWORD)
+    auth.click_to_tab_login()
     assert auth.get_active_tab_text() == "Логин"
     sleep(2)  # для контроля
 
