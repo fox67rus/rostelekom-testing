@@ -90,9 +90,8 @@ def test_auto_change_tab_ls(browser):
     # sleep(3)  # для контроля
 
 
-# 7
+# 07
 # @pytest.mark.skip(reason="there is currently no need to test this")
-@pytest.mark.current
 def test_auto_change_tab_phone_from_login(browser):
     """
     Проверка, что при вводе мобильного телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
@@ -105,9 +104,34 @@ def test_auto_change_tab_phone_from_login(browser):
     # очищаем поля
     auth.clear_login()
     auth.clear_password()
-    assert auth.get_login_value() == "", 'Поля не очищены'
+    assert auth.get_login_value() == "", 'Поля формы не очищены'
 
     auth.enter_login(VALID_PHONE)
     auth.enter_password(VALID_PASSWORD)
     # sleep(3)  # для контроля
     assert auth.get_active_tab_text() == "Телефон"
+
+
+# 08
+# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.current
+def test_open_user_agreement_on_link(browser):
+    """
+    Проверка, что при нажатии на ссылку открывается пользовательское соглашение
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    # сохраняем ID оригинального окна
+    original_window = browser.current_window_handle
+    assert len(browser.window_handles) == 1, 'открыты лишние вкладки'
+    # нажимаем ссылку с соглашением
+    auth.click_to_agreement_link()
+
+    # в открытых вкладках ищем отличную от первой
+    for window_handle in browser.window_handles:
+        if window_handle != original_window:
+            browser.switch_to.window(window_handle)
+            break
+    assert browser.title == 'User agreement'
+    # sleep(3)  # для контроля
+
