@@ -39,8 +39,11 @@ def test_login_with_email_on_button_click(browser):
     auth = AuthPage(browser)
     user_page = UserPage(browser)
     auth.go_to_site()
+    sleep(0.5)
     auth.enter_login(VALID_EMAIL)
+    sleep(0.5)
     auth.enter_password(VALID_PASSWORD)
+    sleep(0.5)
     # снять галочку Запомнить меня
     auth.click_to_checkbox_remember_me()
     auth.click_to_login_button()
