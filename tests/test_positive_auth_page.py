@@ -32,24 +32,20 @@ def test_active_tab_is_phone(browser):
 
 # 3
 @pytest.mark.auth
-@pytest.mark.current
 def test_login_with_email_on_button_click(browser):
     """
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
     """
     auth = AuthPage(browser)
     user_page = UserPage(browser)
-
     auth.go_to_site()
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
     # снять галочку Запомнить меня
     auth.click_to_checkbox_remember_me()
-    sleep(3)  # для контроля
     auth.click_to_login_button()
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
-
     # выход из личного кабинета
     user_page.click_logout()
     sleep(5)  # для контроля
@@ -186,7 +182,17 @@ def test_open_yandex_auth_on_click(browser):
     """
     auth = AuthPage(browser)
     auth.go_to_site()
-    sleep(3)  # для контроля
     auth.click_to_ico_ya()
-    sleep(3)  # для контроля
     assert 'passport.yandex.ru' in browser.current_url
+
+
+# 13
+@pytest.mark.current
+def test_open_page_reset_password_on_link_click(browser):
+    """
+    Проверка корректного открытия страницы Восстановления пароля при нажатии на ссылку
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_link_forgot_password()
+    assert 'login-actions/reset-credentials' in browser.current_url
