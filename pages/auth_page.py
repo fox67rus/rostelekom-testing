@@ -48,6 +48,9 @@ class AuthPage(BasePage):
         password_field.send_keys(Keys.CONTROL + "a")
         password_field.send_keys(Keys.DELETE)
 
+    def click_to_checkbox_remember_me(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_CHECKBOX_REMEMBERME).click()
+
     def click_to_login_button(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_SUBMIT).click()
 
@@ -80,3 +83,5 @@ class AuthPage(BasePage):
 
     def click_to_ico_ya(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ICO_YA).click()
+
+
