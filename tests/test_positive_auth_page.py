@@ -187,7 +187,6 @@ def test_open_yandex_auth_on_click(browser):
 
 
 # 13
-@pytest.mark.current
 def test_open_page_reset_password_on_link_click(browser):
     """
     Проверка корректного открытия страницы Восстановления пароля при нажатии на ссылку
@@ -196,3 +195,15 @@ def test_open_page_reset_password_on_link_click(browser):
     auth.go_to_site()
     auth.click_to_link_forgot_password()
     assert 'login-actions/reset-credentials' in browser.current_url
+
+
+# 14
+@pytest.mark.current
+def test_open_page_registration_on_link_click(browser):
+    """
+    Проверка корректного открытия страницы Регистрации при нажатии на ссылку
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_link_registration()
+    assert 'registration' in browser.current_url
