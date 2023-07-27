@@ -21,6 +21,11 @@ class AuthPageLocators:
 
     LOCATOR_AUTH_PAGE_LINK_AGREEMENT = (By.LINK_TEXT, 'пользовательского соглашения')
 
+    LOCATOR_AUTH_PAGE_ICO_VK = (By.ID, 'oidc_vk')
+    LOCATOR_AUTH_PAGE_ICO_OK = (By.ID, 'oidc_ok')
+    LOCATOR_AUTH_PAGE_ICO_MAIL = (By.ID, 'oidc_mail')
+    LOCATOR_AUTH_PAGE_ICO_YA = (By.ID, 'oidc_ya')
+
 
 class AuthPage(BasePage):
 
@@ -63,3 +68,15 @@ class AuthPage(BasePage):
 
     def click_to_agreement_link(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_AGREEMENT).click()
+
+    def click_to_ico_vk(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ICO_VK).click()
+
+    def click_to_ico_ok(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ICO_OK).click()
+
+    def click_to_ico_mail(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ICO_MAIL).click()
+
+    def click_to_ico_ya(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ICO_YA).click()
