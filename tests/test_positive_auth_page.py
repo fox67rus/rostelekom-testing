@@ -201,7 +201,6 @@ def test_open_page_reset_password_on_link_click(browser):
 
 
 # 14
-@pytest.mark.current
 def test_open_page_registration_on_link_click(browser):
     """
     Проверка корректного открытия страницы Регистрации при нажатии на ссылку
@@ -210,3 +209,15 @@ def test_open_page_registration_on_link_click(browser):
     auth.go_to_site()
     auth.click_to_link_registration()
     assert 'registration' in browser.current_url
+
+
+# 15
+@pytest.mark.current
+def test_support_phone_contains_correct_link(browser):
+    """
+    Проверка корректности указанной ссылки для звонка в службу поддержки
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    assert auth.get_support_phone_href() == 'tel:' + auth.base_phone
+
