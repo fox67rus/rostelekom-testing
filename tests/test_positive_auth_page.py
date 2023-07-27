@@ -173,3 +173,19 @@ def test_open_mail_auth_on_click(browser):
     auth.click_to_ico_mail()
     assert 'connect.mail.ru' in browser.current_url
     # sleep(3)  # для контроля
+
+
+# 12
+# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.current
+def test_open_yandex_auth_on_click(browser):
+    """
+    При нажатии на кнопку авторизации через Mail осуществляется переход на страницу соцсети
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    sleep(3)  # для контроля
+    auth.click_to_ico_ya()
+    sleep(3)  # для контроля
+    assert 'passport.yandex.ru' in browser.current_url
+
