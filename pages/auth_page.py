@@ -90,4 +90,4 @@ class AuthPage(BasePage):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_FORGOT_PASSWORD).click()
 
     def click_to_link_registration(self):
-        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_REGISTRATIONL).click()
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_REGISTRATION).click()
