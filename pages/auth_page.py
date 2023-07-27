@@ -26,6 +26,8 @@ class AuthPageLocators:
     LOCATOR_AUTH_PAGE_ICO_MAIL = (By.ID, 'oidc_mail')
     LOCATOR_AUTH_PAGE_ICO_YA = (By.ID, 'oidc_ya')
 
+    LOCATOR_AUTH_PAGE_LINK_REGISTRATION = (By.ID, 'kc-register')
+
 
 class AuthPage(BasePage):
 
@@ -87,4 +89,5 @@ class AuthPage(BasePage):
     def click_to_link_forgot_password(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_BUTTON_FORGOT_PASSWORD).click()
 
-
+    def click_to_link_registration(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_REGISTRATIONL).click()
