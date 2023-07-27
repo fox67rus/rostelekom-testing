@@ -42,6 +42,7 @@ def test_login_with_email_on_button_click(browser):
     auth.click_to_login_button()
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
+
     # sleep(5)  # для контроля
 
 
