@@ -23,7 +23,7 @@ def test_open_auth_page(browser):
 # @pytest.mark.skip(reason="there is currently no need to test this")
 def test_active_tab_is_phone(browser):
     """
-    Проверка выбора по умолчанию таба авторизации по телефону
+    Проверка, что по умолчанию выбран таб авторизации по телефону
     """
     auth = AuthPage(browser)
     auth.go_to_site()
@@ -94,7 +94,7 @@ def test_auto_change_tab_ls(browser):
 # @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_phone_from_login(browser):
     """
-    Проверка, что при вводе мобильного телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
+    Проверка, что при вводе номера телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
     """
     auth = AuthPage(browser)
     auth.go_to_site()
@@ -150,7 +150,6 @@ def test_open_vk_auth_on_click(browser):
 
 # 10
 # @pytest.mark.skip(reason="there is currently no need to test this")
-@pytest.mark.current
 def test_open_ok_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Одноклассники осуществляется переход на страницу соцсети
@@ -159,4 +158,18 @@ def test_open_ok_auth_on_click(browser):
     auth.go_to_site()
     auth.click_to_ico_ok()
     assert 'connect.ok.ru' in browser.current_url
+    # sleep(3)  # для контроля
+
+
+# 11
+# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.current
+def test_open_mail_auth_on_click(browser):
+    """
+    При нажатии на кнопку авторизации через Mail осуществляется переход на страницу соцсети
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_ico_mail()
+    assert 'connect.mail.ru' in browser.current_url
     # sleep(3)  # для контроля
