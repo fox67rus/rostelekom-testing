@@ -34,6 +34,7 @@ of the page in case any test case will fail.
     python -m pytest -v --driver Chrome --driver-path chromedriver.exe tests/*
     python -m pytest -v -s # вывод доп. информации
     python -m pytest -v -m current # запуск тестов с маркировкой current
+    python -m pytest -v -m auth # запуск тестов проверки авторизации
     ```
 
 Структура проекта
