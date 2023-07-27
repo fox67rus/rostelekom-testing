@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 
 from config import *
 from pages.auth_page import AuthPage
+from pages.user_page import UserPage
 
 
 # 1
@@ -37,6 +38,8 @@ def test_login_with_email_on_button_click(browser):
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
     """
     auth = AuthPage(browser)
+    user_page = UserPage(browser)
+
     auth.go_to_site()
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
@@ -47,7 +50,9 @@ def test_login_with_email_on_button_click(browser):
     assert 'account_b2c' in browser.current_url
     browser.save_screenshot('result.png')
 
-    # sleep(5)  # для контроля
+    # выход из личного кабинета
+    user_page.click_logout()
+    sleep(5)  # для контроля
 
 
 # 4
@@ -185,4 +190,3 @@ def test_open_yandex_auth_on_click(browser):
     auth.click_to_ico_ya()
     sleep(3)  # для контроля
     assert 'passport.yandex.ru' in browser.current_url
-
