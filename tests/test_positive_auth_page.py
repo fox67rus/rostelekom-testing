@@ -8,7 +8,7 @@ from pages.auth_page import AuthPage
 
 
 # 1
-# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.auth
 def test_open_auth_page(browser):
     """
     Проверка корректного открытия формы авторизации
@@ -20,7 +20,6 @@ def test_open_auth_page(browser):
 
 
 # 2
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_active_tab_is_phone(browser):
     """
     Проверка, что по умолчанию выбран таб авторизации по телефону
@@ -31,7 +30,7 @@ def test_active_tab_is_phone(browser):
 
 
 # 3
-# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.auth
 def test_login_with_email_on_button_click(browser):
     """
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
@@ -47,7 +46,6 @@ def test_login_with_email_on_button_click(browser):
 
 
 # 4
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_email(browser):
     """
     Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
@@ -61,7 +59,6 @@ def test_auto_change_tab_email(browser):
 
 
 # 5
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_login(browser):
     """
     Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
@@ -75,7 +72,6 @@ def test_auto_change_tab_login(browser):
 
 
 # 6
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_ls(browser):
     """
     Проверка, что при вводе лицевого счёта таб выбора аутентификации меняется на Лицевой счёт
@@ -91,7 +87,6 @@ def test_auto_change_tab_ls(browser):
 
 
 # 07
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_auto_change_tab_phone_from_login(browser):
     """
     Проверка, что при вводе номера телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
@@ -113,7 +108,6 @@ def test_auto_change_tab_phone_from_login(browser):
 
 
 # 08
-# @pytest.mark.skip(reason="there is currently no need to test this")
 def test_open_user_agreement_on_link(browser):
     """
     Проверка, что при нажатии на ссылку открывается пользовательское соглашение
@@ -136,7 +130,7 @@ def test_open_user_agreement_on_link(browser):
 
 
 # 09
-# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.auth
 def test_open_vk_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Вконтакте осуществляется переход на страницу соцсети
@@ -149,7 +143,7 @@ def test_open_vk_auth_on_click(browser):
 
 
 # 10
-# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.auth
 def test_open_ok_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Одноклассники осуществляется переход на страницу соцсети
@@ -162,8 +156,7 @@ def test_open_ok_auth_on_click(browser):
 
 
 # 11
-# @pytest.mark.skip(reason="there is currently no need to test this")
-@pytest.mark.current
+@pytest.mark.auth
 def test_open_mail_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Mail осуществляется переход на страницу соцсети
@@ -176,7 +169,7 @@ def test_open_mail_auth_on_click(browser):
 
 
 # 12
-# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.auth
 @pytest.mark.current
 def test_open_yandex_auth_on_click(browser):
     """
