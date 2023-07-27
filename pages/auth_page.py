@@ -28,6 +28,8 @@ class AuthPageLocators:
 
     LOCATOR_AUTH_PAGE_LINK_REGISTRATION = (By.ID, 'kc-register')
 
+    LOCATOR_AUTH_PAGE_ERROR_MESSAGE = (By.ID, 'form-error-message')
+
 
 class AuthPage(BasePage):
 
@@ -91,3 +93,7 @@ class AuthPage(BasePage):
 
     def click_to_link_registration(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_LINK_REGISTRATION).click()
+
+    def get_error_message_text(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ERROR_MESSAGE).text
+
