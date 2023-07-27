@@ -29,6 +29,7 @@ class AuthPageLocators:
     LOCATOR_AUTH_PAGE_LINK_REGISTRATION = (By.ID, 'kc-register')
 
     LOCATOR_AUTH_PAGE_ERROR_MESSAGE = (By.ID, 'form-error-message')
+    LOCATOR_AUTH_PAGE_SUPPORT_PHONE = (By.CLASS_NAME, 'rt-footer-right__support-phone')
 
 
 class AuthPage(BasePage):
@@ -96,4 +97,7 @@ class AuthPage(BasePage):
 
     def get_error_message_text(self):
         return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_ERROR_MESSAGE).text
+
+    def get_support_phone_href(self):
+        return self.find_element(AuthPageLocators.LOCATOR_AUTH_PAGE_SUPPORT_PHONE).get_attribute('href')
 
