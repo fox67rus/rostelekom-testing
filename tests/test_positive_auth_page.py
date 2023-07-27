@@ -114,7 +114,6 @@ def test_auto_change_tab_phone_from_login(browser):
 
 # 08
 # @pytest.mark.skip(reason="there is currently no need to test this")
-@pytest.mark.current
 def test_open_user_agreement_on_link(browser):
     """
     Проверка, что при нажатии на ссылку открывается пользовательское соглашение
@@ -135,3 +134,29 @@ def test_open_user_agreement_on_link(browser):
     assert browser.title == 'User agreement'
     # sleep(3)  # для контроля
 
+
+# 09
+# @pytest.mark.skip(reason="there is currently no need to test this")
+def test_open_vk_auth_on_click(browser):
+    """
+    При нажатии на кнопку авторизации через Вконтакте осуществляется переход на страницу соцсети
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_ico_vk()
+    assert 'id.vk.com' in browser.current_url
+    # sleep(3)  # для контроля
+
+
+# 10
+# @pytest.mark.skip(reason="there is currently no need to test this")
+@pytest.mark.current
+def test_open_ok_auth_on_click(browser):
+    """
+    При нажатии на кнопку авторизации через Одноклассники осуществляется переход на страницу соцсети
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_ico_ok()
+    assert 'connect.ok.ru' in browser.current_url
+    # sleep(3)  # для контроля
