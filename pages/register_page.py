@@ -20,4 +20,6 @@ class UserPage(BasePage):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME).send_keys(
             first_name_value)
 
-
+    def enter_last_name(self, last_name_value):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME).send_keys(
+            last_name_value)
