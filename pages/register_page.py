@@ -36,4 +36,9 @@ class UserPage(BasePage):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD_CONFIRM).send_keys(
             password_confirm_value)
 
+    def click_to_register_button(self):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_BUTTON_REGISTER).click()
+
+
+
 
