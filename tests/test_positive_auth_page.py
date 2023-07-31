@@ -212,7 +212,6 @@ def test_open_page_registration_on_link_click(browser):
 
 
 # 15
-@pytest.mark.current
 def test_support_phone_contains_correct_link(browser):
     """
     Проверка корректности указанной ссылки для звонка в службу поддержки
