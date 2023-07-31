@@ -27,3 +27,13 @@ class UserPage(BasePage):
     def enter_user_name(self, user_name_value):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_USER_NAME).send_keys(
             user_name_value)
+
+    def enter_password(self, password_value):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD).send_keys(
+            password_value)
+
+    def enter_password_confirm(self, password_confirm_value):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD_CONFIRM).send_keys(
+            password_confirm_value)
+
+
