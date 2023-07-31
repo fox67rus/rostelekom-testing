@@ -46,7 +46,7 @@ def test_login_with_empty_data(browser):
     sleep(0.5)
     for tab in tabs_data.keys():
         tabs_data[tab][0]()
-        assert auth.get_active_tab_text() == tabs_data[tab][1]
+        assert auth.get_active_tab_text() == tabs_data[tab][1], 'Активен не соответствующий функции таб'
         auth.enter_login('')
         sleep(0.5)
         auth.enter_password('')
@@ -54,4 +54,4 @@ def test_login_with_empty_data(browser):
         auth.click_to_checkbox_remember_me()
         auth.click_to_login_button()
 
-        assert auth.get_error_message_text() == tabs_data[tab][2]
+        assert auth.get_error_message_text() == tabs_data[tab][2], 'Сообщение об ошибке не соответствует вкладке'
