@@ -14,6 +14,10 @@ class RegisterPageLocators:
     LOCATOR_REGISTER_PAGE_BUTTON_REGISTER = (By.NAME, 'register')
 
 
+class UserPage(BasePage):
 
+    def enter_first_name(self, first_name_value):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME).send_keys(
+            first_name_value)
 
 
