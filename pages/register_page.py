@@ -45,6 +45,11 @@ class UserPage(BasePage):
         first_name_field.send_keys(Keys.CONTROL + "a")
         first_name_field.send_keys(Keys.DELETE)
 
+    def clear_last_name_field(self):
+        last_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME)
+        last_name_field.send_keys(Keys.CONTROL + "a")
+        last_name_field.send_keys(Keys.DELETE)
+
 
 
 
