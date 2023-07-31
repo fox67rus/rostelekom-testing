@@ -1,3 +1,4 @@
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
@@ -38,6 +39,14 @@ class UserPage(BasePage):
 
     def click_to_register_button(self):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_BUTTON_REGISTER).click()
+
+    def clear_first_name_field(self):
+        first_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME)
+        first_name_field.send_keys(Keys.CONTROL + "a")
+        first_name_field.send_keys(Keys.DELETE)
+
+
+
 
 
 
