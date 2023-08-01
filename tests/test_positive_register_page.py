@@ -32,5 +32,5 @@ def test_register_with_correct_data(browser):
     register.click_to_register_button()
     sleep(0.5)
 
-    assert register.get_registraton_confirm_text() == 'Подтверждение email'
+    assert register.get_registration_confirm_text() == 'Подтверждение email'
     sleep(5)  # для контроля
