@@ -14,8 +14,13 @@ class RegisterPageLocators:
 
     LOCATOR_REGISTER_PAGE_BUTTON_REGISTER = (By.NAME, 'register')
 
+    LOCATOR_REGISTER_PAGE_CONFIRM_REGISTRATION_H1 = (By.TAG_NAME, 'h1')
 
-class UserPage(BasePage):
+
+class RegisterPage(BasePage):
+
+    def open_register_form(self):
+        self.go_to_site()
 
     def enter_first_name(self, first_name_value):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME).send_keys(
@@ -49,6 +54,9 @@ class UserPage(BasePage):
         last_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME)
         last_name_field.send_keys(Keys.CONTROL + "a")
         last_name_field.send_keys(Keys.DELETE)
+
+    def get_registration_confirm_text(self):
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_CONFIRM_REGISTRATION_H1).text
 
 
 
