@@ -14,7 +14,9 @@ class RegisterPageLocators:
 
     LOCATOR_REGISTER_PAGE_BUTTON_REGISTER = (By.NAME, 'register')
 
-    LOCATOR_REGISTER_PAGE_CONFIRM_REGISTRATION_H1 = (By.TAG_NAME, 'h1')
+    LOCATOR_REGISTER_PAGE_H1 = (By.TAG_NAME, 'h1')
+
+    LOCATOR_REGISTER_PAGE_META_ERROR = (By.CLASS_NAME, 'rt-input-container__meta--error')
 
 
 class RegisterPage(BasePage):
@@ -56,7 +58,9 @@ class RegisterPage(BasePage):
         last_name_field.send_keys(Keys.DELETE)
 
     def get_registration_confirm_text(self):
-        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_CONFIRM_REGISTRATION_H1).text
+        return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_H1).text
+
+
 
 
 
