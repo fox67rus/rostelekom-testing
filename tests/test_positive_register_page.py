@@ -6,7 +6,6 @@ from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 
 
-# 18
 @pytest.mark.register
 def test_register_with_correct_data(browser):
     """
