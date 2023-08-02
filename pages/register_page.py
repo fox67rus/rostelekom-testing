@@ -57,7 +57,7 @@ class RegisterPage(BasePage):
         last_name_field.send_keys(Keys.CONTROL + "a")
         last_name_field.send_keys(Keys.DELETE)
 
-    def get_registration_confirm_text(self):
+    def get_header_h1_text(self):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_H1).text
 
 
