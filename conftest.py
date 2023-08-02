@@ -23,3 +23,18 @@ def clear_clipboard():
     if windll.user32.OpenClipboard(None):
         windll.user32.EmptyClipboard()
         windll.user32.CloseClipboard()
+
+
+@pytest.fixture(scope='session', autouse=True)
+def faker_session_locale():
+    return ['ru_RU']
+
+
+@pytest.fixture(scope='session', autouse=True)
+def faker_seed():
+    return 12345
+
+
+@pytest.fixture()
+def faker_locale():
+    return ['ja_JP', 'en_US']
