@@ -6,8 +6,9 @@ from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 
 
+@pytest.mark.current
 @pytest.mark.register
-def test_register_with_correct_data(browser):
+def test_register_with_correct_data(browser, faker):
     """
     Проверка регистрации с корректными данными
     """
@@ -18,9 +19,11 @@ def test_register_with_correct_data(browser):
 
     register = RegisterPage(browser)
     sleep(0.5)
-    register.enter_first_name('Михаил')
+    # register.enter_first_name('Михаил')
+    register.enter_first_name(faker.first_name())
     sleep(0.5)
-    register.enter_last_name('Булгаков')
+    # register.enter_last_name('Булгаков')
+    register.enter_last_name(faker.last_name())
     sleep(0.5)
     register.enter_user_name('xaset20266@naymedia.com')
     sleep(0.5)
