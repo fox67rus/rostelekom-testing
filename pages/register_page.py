@@ -74,3 +74,10 @@ class RegisterPage(BasePage):
         for element in self.find_elements(RegisterPageLocators.LOCATOR_REGISTER_PAGE_META_ERROR):
             error_message_text.append(element.text)
         return error_message_text
+
+    def reset_meta_errors(self):
+        self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME).click()
+        self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME).click()
+        self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_USER_NAME).click()
+        self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD).click()
+        self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD_CONFIRM).click()
