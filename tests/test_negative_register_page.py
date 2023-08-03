@@ -12,22 +12,22 @@ def test_register_with_empty_data(browser, go_to_register_page):
     Проверка регистрации с незаполненными полями
     """
     register = RegisterPage(browser)
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_first_name('')
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_last_name('')
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_user_name('')
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_password('')
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_password_confirm('')
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.click_to_register_button()
-    sleep(0.5)
+    sleep(0.5)  # антикапча
 
     assert register.get_header_h1_text() == 'Регистрация'
-    sleep(5)  # для контроля
+    # sleep(5)  # для контроля
 
 
 @pytest.mark.current
@@ -43,9 +43,9 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
 
     register = RegisterPage(browser)
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_first_name(first_name_value)
-    sleep(0.5)
+    sleep(0.5)  # антикапча
     register.enter_last_name("Фамилия")
     sleep(3)  # для контроля
 
