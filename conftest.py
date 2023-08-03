@@ -4,6 +4,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from ctypes import windll
 
+from pages.auth_page import AuthPage
+
 
 @pytest.fixture(scope="session")
 def browser():
@@ -15,6 +17,14 @@ def browser():
     yield driver
 
     driver.quit()
+
+
+@pytest.fixture()
+def go_to_register_page(browser):
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_link_registration()
+    assert 'registration' in browser.current_url
 
 
 @pytest.fixture(scope="session")
