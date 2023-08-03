@@ -27,6 +27,7 @@ def test_register_with_empty_data(browser, go_to_register_page):
     sleep(0.5)  # антикапча
 
     assert register.get_header_h1_text() == 'Регистрация'
+    assert len(register.get_meta_error_message()) == 5, 'Количество сообщений об ошибках не соответствует количеству полей'
     # sleep(5)  # для контроля
 
 
@@ -47,6 +48,8 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.enter_first_name(first_name_value)
     sleep(0.5)  # антикапча
     register.enter_last_name("Фамилия")
+
+    assert register.get_meta_error_message()[0] == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.'
     sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
