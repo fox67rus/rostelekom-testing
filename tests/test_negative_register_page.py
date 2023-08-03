@@ -30,6 +30,7 @@ def test_register_with_empty_data(browser, go_to_register_page):
     assert register.get_header_h1_text() == 'Регистрация'
     assert len(
         register.get_meta_error_message()) == 5, 'Количество сообщений об ошибках не соответствует количеству полей'
+    register.reset_meta_errors()  # сброс ошибок для полей
     # sleep(5)  # для контроля
 
 
