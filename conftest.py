@@ -19,7 +19,7 @@ def browser():
     driver.quit()
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def go_to_register_page(browser):
     auth = AuthPage(browser)
     auth.go_to_site()
