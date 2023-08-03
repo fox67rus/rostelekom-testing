@@ -2,20 +2,15 @@ from time import sleep
 
 import pytest
 
-from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 
 
+@pytest.mark.current
 @pytest.mark.register
-def test_register_with_empty_data(browser):
+def test_register_with_empty_data(browser, go_to_register_page):
     """
     Проверка регистрации с незаполненными полями
     """
-    auth = AuthPage(browser)
-    auth.go_to_site()
-    auth.click_to_link_registration()
-    assert 'registration' in browser.current_url
-
     register = RegisterPage(browser)
     sleep(0.5)
     register.enter_first_name('')
@@ -35,27 +30,23 @@ def test_register_with_empty_data(browser):
     sleep(5)  # для контроля
 
 
+@pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
     ["", "А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345"],
     ids=["empty", "1 symbol", "31 symbol", "in English", "china", "digit"]
 )
-def test_field_first_name(browser, first_name_value):
+def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
     Проверка, что при вводе недопустимых значений в поле Имя возникает сообщение об ошибке
     """
-    auth = AuthPage(browser)
-    auth.go_to_site()
-    auth.click_to_link_registration()
-    assert 'registration' in browser.current_url
 
     register = RegisterPage(browser)
     sleep(0.5)
     register.enter_first_name(first_name_value)
-    register.click_to_register_button()
-    sleep(5)  # для контроля
+    sleep(0.5)
+    register.enter_last_name("Фамилия")
+    sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
-
-
