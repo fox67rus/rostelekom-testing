@@ -60,8 +60,11 @@ class RegisterPage(BasePage):
     def get_header_h1_text(self):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_H1).text
 
-    def get_meta_error_message(self):
-        return self.find_elements(RegisterPageLocators.LOCATOR_REGISTER_PAGE_META_ERROR).text
+    def get_meta_error_message(self) -> list:
+        error_message_text = []
+        for element in self.find_elements(RegisterPageLocators.LOCATOR_REGISTER_PAGE_META_ERROR):
+            error_message_text.append(element.text)
+        return error_message_text
 
 
 
