@@ -2,20 +2,6 @@
 ------------
 В данном репозитории находится **Итоговый проект по автоматизации тестирования**
 
-
-
-Файлы
------
-
-[conftest.py](conftest.py) contains all the required code to catch failed test cases and make screenshot
-of the page in case any test case will fail.
-
-[pages/base_page.py](pages/base_page.py) contains PageObject pattern implementation for Python.
-
-[pages/auth_page.py](pages/auth_page.py) contains helper class to define web elements on web pages.
-
-
-
 Инструкция по запуску
 ----------------
 
@@ -26,31 +12,34 @@ of the page in case any test case will fail.
     ```
 
 2) Скачать Selenium WebDriver по [ссылке](https://chromedriver.chromium.org/downloads) (выбрать версию в соответствии со
-   своим браузером). И положить файл в корневой каталог проекта.
+   своим браузером). И положить файл в папку webdrivers в корневом каталоге проекта.
 
 3) Запуск тестов:
 
     ```bash
-    python -m pytest -v --driver Chrome --driver-path chromedriver.exe tests/*
     python -m pytest -v -s # вывод доп. информации
-    python -m pytest -v -m current # запуск тестов с маркировкой current
-    python -m pytest -v -m auth # запуск тестов проверки авторизации
+    python -m pytest -v auth # запуск тестов проверки авторизации
+    python -m pytest -v register # запуск тестов проверки формы регистрации
     ```
 
 Структура проекта
 ----------------
 
-| Директория                        | Описание                                                 |
-|-----------------------------------|----------------------------------------------------------|
-| /tests                            | файлы с тестами                                          |
-| /tests/test_negative_auth_page.py | негативные тесты для страницы авторизации                |
-| /pages                            | файлы с классами (Page object model)                     |
-| /pages/auth_page.py               | класс для страницы авторизации  и локаторы               |
-| /pages/base_page.py               | базовый класс страниц                                    |
-| /pages/register_page.py           | класс для страницы регистрации и локаторы                |
-| /pages/user_page.py               | класс для страницы пользователя и локаторы               |
-| файл conftest.py                  | фикстуры                                                 |
-| requirements.txt                  | файл с зависимостями                                     |
+| Директория                            | Описание                                      |
+|---------------------------------------|-----------------------------------------------|
+| /tests                                | файлы с тестами                               |
+| /tests/test_negative_auth_page.py     | негативные тесты для страницы авторизации     |
+| /tests/test_negative_register_page.py | негативные тесты для страницы регистрации     |
+| /tests/test_positive_auth_page.py     | позитивные тесты для страницы авторизации     |
+| /tests/test_positive_register_page.py | позитивные тесты для страницы регистрации     |
+| /pages                                | файлы с классами (Page object model)          |
+| /pages/auth_page.py                   | класс для страницы авторизации  и локаторы    |
+| /pages/base_page.py                   | базовый класс страниц                         |
+| /pages/register_page.py               | класс для страницы регистрации и локаторы     |
+| /pages/user_page.py                   | класс для страницы пользователя и локаторы    |
+| файл conftest.py                      | фикстуры                                      |
+| requirements.txt                      | файл с зависимостями                          |
+| testdata.py                           | файл с функциями-генераторами тестовых данных |
 
 
 
