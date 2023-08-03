@@ -35,16 +35,15 @@ def test_register_with_empty_data(browser):
     sleep(5)  # для контроля
 
 
+@pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
     ["", "А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345"],
     ids=["empty", "1 symbol", "31 symbol", "in English", "china", "digit"]
 )
-@pytest.mark.current
-@pytest.mark.register
 def test_field_first_name(browser, first_name_value):
     """
-    Проверка поля Имя
+    Проверка, что при вводе недопустимых значений в поле Имя возникает сообщение об ошибке
     """
     auth = AuthPage(browser)
     auth.go_to_site()
@@ -58,3 +57,5 @@ def test_field_first_name(browser, first_name_value):
     sleep(5)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
+
+
