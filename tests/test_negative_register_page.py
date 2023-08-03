@@ -35,8 +35,8 @@ def test_register_with_empty_data(browser, go_to_register_page):
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
-    ["", "А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345"],
-    ids=["empty", "1 symbol", "31 symbol", "in English", "china", "digit"]
+    ["А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345"],
+    ids=["1 symbol", "31 symbol", "in English", "china", "digit"]
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
