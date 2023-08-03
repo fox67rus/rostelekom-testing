@@ -6,17 +6,11 @@ from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 
 
-@pytest.mark.current
 @pytest.mark.register
-def test_register_with_correct_data(browser, faker):
+def test_register_with_correct_data(browser, go_to_register_page, faker):
     """
     Проверка регистрации с корректными данными
     """
-    auth = AuthPage(browser)
-    auth.go_to_site()
-    auth.click_to_link_registration()
-    assert 'registration' in browser.current_url
-
     register = RegisterPage(browser)
     sleep(0.5)
     # register.enter_first_name('Михаил')
