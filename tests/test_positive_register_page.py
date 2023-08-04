@@ -2,7 +2,6 @@ from time import sleep
 
 import pytest
 
-from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 
 
