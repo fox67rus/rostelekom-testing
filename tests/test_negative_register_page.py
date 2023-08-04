@@ -3,7 +3,7 @@ from time import sleep
 import pytest
 
 from pages.register_page import RegisterPage
-from testdata import special_chars
+from testdata import special_chars, generate_string, generate_russian_string, chinese_chars
 
 
 @pytest.mark.register
@@ -33,11 +33,10 @@ def test_register_with_empty_data(browser, go_to_register_page):
     # sleep(5)  # для контроля
 
 
-@pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
-    ["А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345", special_chars()],
+    ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars()],
     ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars"]
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
@@ -51,8 +50,10 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     # sleep(0.5)  # антикапча
     # register.enter_last_name("Фамилия")
 
-    assert register.get_meta_error_message()[0] == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.'
-    sleep(3)  # для контроля
+    assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
+    assert register.get_meta_error_message()[
+               0] == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.', 'Не верное сообщение об ошибке'
+    # sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
     register.clear_registration_form()  # очистка полей формы
@@ -62,8 +63,24 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
 @pytest.mark.register
 @pytest.mark.parametrize(
     "user_name_value",
-    ["А", "Оченьоченьдлинноеимядлятеставот", "Michael", "袁世凱", "12345", special_chars()],
-    ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars"]
+    ["example@email",
+     generate_string(312) + "@email.ru",
+     "exampleemail.ru",
+     "exa mple@email.ru",
+     "example@e mail.ru",
+     "@email.ru",
+     "example@",
+     "имя@домен.рф"
+     ],
+    ids=["no dot in domain",
+         "320+ symbols",
+         "no @",
+         "space in local",
+         "space in domen",
+         "empty local",
+         "empty domen",
+         "russian_chars"
+         ]
 )
 def test_field_user_name(browser, user_name_value, go_to_register_page):
     """
@@ -73,9 +90,10 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
     register = RegisterPage(browser)
     sleep(0.5)  # антикапча
     register.enter_user_name(user_name_value)
-
+    assert register.get_meta_error_message(), "Отсутствует сообщение об ошибке"
     assert register.get_meta_error_message()[
-               0] == 'Введите телефон в формате +7ХХХХХХХХХХ или +375XXXXXXXXX, или email в формате example@email.ru'
-    sleep(3)  # для контроля
+               0] == 'Введите телефон в формате +7ХХХХХХХХХХ или +375XXXXXXXXX, или email в формате example@email.ru', \
+        "Не верное сообщение об ошибке"
+    # sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
