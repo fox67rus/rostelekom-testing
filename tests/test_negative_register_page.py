@@ -72,14 +72,14 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
      "example@",
      "имя@домен.рф"
      ],
-    ids=["no dot in domain",
-         "320+ symbols",
-         "no @",
-         "space in local",
-         "space in domen",
-         "empty local",
-         "empty domen",
-         "russian_chars"
+    ids=["email: no dot in domain",
+         "email: 320+ symbols",
+         "email: no @",
+         "email: space in local",
+         "email: space in domen",
+         "email: empty local",
+         "email: empty domen",
+         "email: russian_chars"
          ]
 )
 def test_field_user_name(browser, user_name_value, go_to_register_page):
