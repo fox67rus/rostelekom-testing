@@ -5,8 +5,9 @@ import pytest
 from pages.register_page import RegisterPage
 from testdata import special_chars, generate_string, generate_russian_string, chinese_chars
 
+pytestmark = [pytest.mark.negative, pytest.mark.register]  # маркировка всех тестов модуля
 
-@pytest.mark.register
+
 def test_register_with_empty_data(browser, go_to_register_page):
     """
     Проверка регистрации с незаполненными полями
@@ -33,8 +34,6 @@ def test_register_with_empty_data(browser, go_to_register_page):
     # sleep(5)  # для контроля
 
 
-# @pytest.mark.current
-@pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
     ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars(), "И ван"],
@@ -60,7 +59,6 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
-@pytest.mark.register
 @pytest.mark.parametrize(
     "user_name_value",
     ["example@email",
@@ -101,7 +99,6 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
     assert register.get_header_h1_text() == 'Регистрация'
 
 
-@pytest.mark.register
 @pytest.mark.parametrize(
     "password_value",
     [
