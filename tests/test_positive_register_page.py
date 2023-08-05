@@ -13,6 +13,7 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
     Проверка, что при нажатии на кнопку Зарегистрироваться с заполненными корректными данными происходит отправка кода
     подтверждения
     """
+
     register = RegisterPage(browser)
     sleep(0.5)
     # register.enter_first_name('Михаил')
@@ -28,7 +29,6 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
     register.enter_password_confirm('1234-Qwerty')
     sleep(0.5)
     register.click_to_register_button()
-    sleep(0.5)
 
     assert register.get_header_h1_text() == 'Подтверждение email'
     # sleep(3)  # для контроля
@@ -44,8 +44,8 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     Проверка, что при вводе допустимых значений в поле Имя не возникает сообщения об ошибке.
     Проверка граничных значений
     """
-
     register = RegisterPage(browser)
+    assert register.get_header_h1_text() == 'Регистрация', "Открыта не страница регистрации"
     sleep(0.5)  # антикапча
     register.enter_first_name(first_name_value)
     sleep(0.5)  # антикапча
@@ -68,6 +68,7 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
     Проверка граничных значений
     """
     register = RegisterPage(browser)
+    assert register.get_header_h1_text() == 'Регистрация', "Открыта не страница регистрации"
     register.clear_registration_form()  # очистка полей формы
     sleep(0.5)  # антикапча
     register.enter_last_name(last_name_value)
@@ -100,8 +101,8 @@ def test_field_password_correct_data(browser, password_value: str, go_to_registe
     """
     Проверка, что при вводе недопустимых значений в поле Пароль возникает сообщение об ошибке
     """
-
     register = RegisterPage(browser)
+    assert register.get_header_h1_text() == 'Регистрация', "Открыта не страница регистрации"
     sleep(0.5)  # антикапча
     register.enter_password(password_value)
     sleep(0.5)  # антикапча
