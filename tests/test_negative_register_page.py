@@ -127,7 +127,7 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
         "only special"
     ]
 )
-def test_field_password(browser, password_value: str, go_to_register_page):
+def test_field_password_incorrect_data(browser, password_value: str, go_to_register_page):
     """
     Проверка, что при вводе недопустимых значений в поле Пароль возникает сообщение об ошибке
     """
@@ -156,8 +156,8 @@ def test_field_password(browser, password_value: str, go_to_register_page):
     elif not digit_and_spec:
         assert register.get_meta_error_message()[
                    0] == 'Пароль должен содержать хотя бы 1 спецсимвол или хотя бы одну цифру'
-    print(f'{password_value=}, {register.get_meta_error_message()[0]}')
 
+    # print(f'{password_value=}, {register.get_meta_error_message()[0]}')  # для отладки
     # sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
