@@ -9,7 +9,8 @@ from testdata import generate_russian_string
 @pytest.mark.register
 def test_register_with_correct_data(browser, go_to_register_page, faker):
     """
-    Проверка, что при нажатии на кнопку Зарегистрироваться с заполненными корректными данными происходит отправка кода подтверждения
+    Проверка, что при нажатии на кнопку Зарегистрироваться с заполненными корректными данными происходит отправка кода
+    подтверждения
     """
     register = RegisterPage(browser)
     sleep(0.5)
@@ -56,7 +57,7 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
-@pytest.mark.current
+# @pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "last_name_value",
@@ -80,3 +81,36 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
 
 
+@pytest.mark.current
+@pytest.mark.register
+@pytest.mark.parametrize(
+    "password_value",
+    [
+        "123456Ab",
+        "1234567Ab",
+        "123456789QwertyAsdf",
+        "123456789QwertyAsdfg",
+        "`~@#$%^&*()_+|{-=Ab"
+    ],
+    ids=[
+        "8 symbols (digit + upper + lower)",
+        "9 symbols (digit + upper + lower)",
+        "19 symbols (digit + upper + lower)",
+        "20 symbols (digit + upper + lower)",
+        "19 symbols (special + upper + lower)"
+    ]
+)
+def test_field_password_correct_data(browser, password_value: str, go_to_register_page):
+    """
+    Проверка, что при вводе недопустимых значений в поле Пароль возникает сообщение об ошибке
+    """
+
+    register = RegisterPage(browser)
+    sleep(0.5)  # антикапча
+    register.enter_password(password_value)
+    sleep(0.5)  # антикапча
+    register.click_to_register_button()
+    assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
+
+    # sleep(3)  # для контроля
+    register.clear_registration_form()  # очистка полей формы
