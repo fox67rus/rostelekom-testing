@@ -137,7 +137,7 @@ def test_field_password_incorrect_data(browser, password_value: str, go_to_regis
     uppers = [char for char in password_value if 65 <= ord(char) <= 90]  # заглавные буквы в пароле
     lowers = [char for char in password_value if 97 <= ord(char) <= 122]  # строчные буквы в пароле
     rus_letters = [char for char in password_value if char.lower() in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']
-    digit_and_spec = [char for char in password_value if char.lower() in '0123456789~`!@#$%^&*()_+?:"{}[];’']
+    digit_and_spec = [char for char in password_value if char in '0123456789~`!@#$%^&*()_+?:"{}[];’']
 
     assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
 
