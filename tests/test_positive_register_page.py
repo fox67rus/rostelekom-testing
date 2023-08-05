@@ -2,18 +2,22 @@ from time import sleep
 
 import pytest
 
+from pages.auth_page import AuthPage
 from pages.register_page import RegisterPage
 from testdata import generate_russian_string
 
 pytestmark = [pytest.mark.positive, pytest.mark.register]  # маркировка всех тестов модуля
 
 
-def test_register_with_correct_data(browser, go_to_register_page, faker):
+def test_register_with_correct_data(browser, faker):
     """
     Проверка, что при нажатии на кнопку Зарегистрироваться с заполненными корректными данными происходит отправка кода
     подтверждения
     """
-
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_link_registration()
+    assert 'registration' in browser.current_url
     register = RegisterPage(browser)
     sleep(0.5)
     # register.enter_first_name('Михаил')
