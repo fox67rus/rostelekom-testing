@@ -60,7 +60,7 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
 @pytest.mark.register
 @pytest.mark.parametrize(
     "last_name_value",
-    ["Иванов", "Ли", "Лия", generate_russian_string(29), generate_russian_string(30), "Мамин-Сибиряк"],
+    ["Иванов", "Ли", "Ким", generate_russian_string(29), generate_russian_string(30), "Мамин-Сибиряк"],
     ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols", "dash"]
 )
 def test_field_last_name(browser, last_name_value, go_to_register_page):
@@ -68,8 +68,8 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
     Проверка, что при вводе допустимых значений в поле Фамилия не возникает сообщения об ошибке.
     Проверка граничных значений
     """
-
     register = RegisterPage(browser)
+    register.clear_registration_form()  # очистка полей формы
     sleep(0.5)  # антикапча
     register.enter_last_name(last_name_value)
     sleep(0.5)  # антикапча
@@ -78,4 +78,5 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
     # sleep(3)  # для контроля
     assert len(
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
-    register.clear_registration_form()  # очистка полей формы
+
+
