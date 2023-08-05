@@ -33,11 +33,12 @@ def test_register_with_empty_data(browser, go_to_register_page):
     # sleep(5)  # для контроля
 
 
+@pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
-    ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars()],
-    ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars"]
+    ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars(), "И ван"],
+    ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars", "space"]
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
