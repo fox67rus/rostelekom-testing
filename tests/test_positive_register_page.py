@@ -32,7 +32,6 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
@@ -41,7 +40,8 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
-    Проверка, что при вводе допустимых значений в поле Имя не возникает сообщения об ошибке
+    Проверка, что при вводе допустимых значений в поле Имя не возникает сообщения об ошибке.
+    Проверка граничных значений
     """
 
     register = RegisterPage(browser)
@@ -50,7 +50,32 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     sleep(0.5)  # антикапча
     register.click_to_register_button()
 
-    sleep(3)  # для контроля
+    # sleep(3)  # для контроля
+    assert len(
+        register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
+    register.clear_registration_form()  # очистка полей формы
+
+
+@pytest.mark.current
+@pytest.mark.register
+@pytest.mark.parametrize(
+    "last_name_value",
+    ["Иванов", "Ли", "Лия", generate_russian_string(29), generate_russian_string(30), "Анна-Мария", "И ван"],
+    ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols", "dash", "space"]
+)
+def test_field_last_name(browser, last_name_value, go_to_register_page):
+    """
+    Проверка, что при вводе допустимых значений в поле Фамилия не возникает сообщения об ошибке.
+    Проверка граничных значений
+    """
+
+    register = RegisterPage(browser)
+    sleep(0.5)  # антикапча
+    register.enter_last_name(last_name_value)
+    sleep(0.5)  # антикапча
+    register.click_to_register_button()
+
+    # sleep(3)  # для контроля
     assert len(
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
     register.clear_registration_form()  # очистка полей формы
