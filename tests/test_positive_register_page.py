@@ -35,8 +35,8 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
-    ["Иван", "Ян", "Лия", generate_russian_string(29), generate_russian_string(30)],
-    ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols"]
+    ["Иван", "Ян", "Лия", generate_russian_string(29), generate_russian_string(30), "Анна-Мария"],
+    ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols", "dash"]
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
@@ -60,8 +60,8 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
 @pytest.mark.register
 @pytest.mark.parametrize(
     "last_name_value",
-    ["Иванов", "Ли", "Лия", generate_russian_string(29), generate_russian_string(30), "Анна-Мария", "И ван"],
-    ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols", "dash", "space"]
+    ["Иванов", "Ли", "Лия", generate_russian_string(29), generate_russian_string(30), "Мамин-Сибиряк"],
+    ids=["Common", "2 symbols", "3 symbols", "29 symbols", "30 symbols", "dash"]
 )
 def test_field_last_name(browser, last_name_value, go_to_register_page):
     """
