@@ -101,7 +101,6 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
     assert register.get_header_h1_text() == 'Регистрация'
 
 
-@pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "password_value",
