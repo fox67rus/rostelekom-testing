@@ -33,7 +33,7 @@ def test_register_with_empty_data(browser, go_to_register_page):
     # sleep(5)  # для контроля
 
 
-@pytest.mark.current
+# @pytest.mark.current
 @pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",

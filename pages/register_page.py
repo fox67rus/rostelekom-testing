@@ -20,10 +20,6 @@ class RegisterPageLocators:
 
 
 class RegisterPage(BasePage):
-
-    def open_register_form(self):
-        self.go_to_site()
-
     def enter_first_name(self, first_name_value):
         first_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME)
         first_name_field.send_keys(Keys.CONTROL + "a")
@@ -32,11 +28,8 @@ class RegisterPage(BasePage):
         first_name_field.send_keys(Keys.TAB)
 
     def enter_last_name(self, last_name_value):
-        last_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME)
-        last_name_field.send_keys(Keys.CONTROL + "a")
-        last_name_field.send_keys(Keys.DELETE)
-        last_name_field.send_keys(last_name_value)
-        last_name_field.send_keys(Keys.TAB)
+        locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME
+        self.enter_text_to_field(locator_text_input, last_name_value)
 
     def enter_user_name(self, user_name_value):
         field_user_name = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_USER_NAME)
@@ -83,4 +76,3 @@ class RegisterPage(BasePage):
         for field in registration_form:
             field.send_keys(Keys.CONTROL + "a")
             field.send_keys(Keys.DELETE)
-
