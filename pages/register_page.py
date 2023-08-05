@@ -21,36 +21,24 @@ class RegisterPageLocators:
 
 class RegisterPage(BasePage):
     def enter_first_name(self, first_name_value):
-        first_name_field = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME)
-        first_name_field.send_keys(Keys.CONTROL + "a")
-        first_name_field.send_keys(Keys.DELETE)
-        first_name_field.send_keys(first_name_value)
-        first_name_field.send_keys(Keys.TAB)
+        locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_FIRST_NAME
+        self.enter_text_to_field(locator_text_input, first_name_value)
 
     def enter_last_name(self, last_name_value):
         locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_LAST_NAME
         self.enter_text_to_field(locator_text_input, last_name_value)
 
     def enter_user_name(self, user_name_value):
-        field_user_name = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_USER_NAME)
-        field_user_name.send_keys(Keys.CONTROL + "a")
-        field_user_name.send_keys(Keys.DELETE)
-        field_user_name.send_keys(user_name_value)
-        field_user_name.send_keys(Keys.TAB)
+        locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_USER_NAME
+        self.enter_text_to_field(locator_text_input, user_name_value)
 
     def enter_password(self, password_value):
-        field_password = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD)
-        field_password.send_keys(Keys.CONTROL + "a")
-        field_password.send_keys(Keys.DELETE)
-        field_password.send_keys(password_value)
-        field_password.send_keys(Keys.TAB)
+        locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD
+        self.enter_text_to_field(locator_text_input, password_value)
 
     def enter_password_confirm(self, password_confirm_value):
-        field_password_confirm = self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD_CONFIRM)
-        field_password_confirm.send_keys(Keys.CONTROL + "a")
-        field_password_confirm.send_keys(Keys.DELETE)
-        field_password_confirm.send_keys(password_confirm_value)
-        field_password_confirm.send_keys(Keys.TAB)
+        locator_text_input = RegisterPageLocators.LOCATOR_REGISTER_PAGE_FIELD_PASSWORD_CONFIRM
+        self.enter_text_to_field(locator_text_input, password_confirm_value)
 
     def click_to_register_button(self):
         return self.find_element(RegisterPageLocators.LOCATOR_REGISTER_PAGE_BUTTON_REGISTER).click()
