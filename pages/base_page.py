@@ -30,5 +30,3 @@ class BasePage:
         field.send_keys(Keys.DELETE)
         field.send_keys(value_to_input)
         self.find_element(defocusing_locator).click()
-
-
