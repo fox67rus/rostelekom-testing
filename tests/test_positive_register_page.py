@@ -5,8 +5,9 @@ import pytest
 from pages.register_page import RegisterPage
 from testdata import generate_russian_string
 
+pytestmark = [pytest.mark.positive, pytest.mark.register]  # маркировка всех тестов модуля
 
-@pytest.mark.register
+
 def test_register_with_correct_data(browser, go_to_register_page, faker):
     """
     Проверка, что при нажатии на кнопку Зарегистрироваться с заполненными корректными данными происходит отправка кода
@@ -33,7 +34,6 @@ def test_register_with_correct_data(browser, go_to_register_page, faker):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.register
 @pytest.mark.parametrize(
     "first_name_value",
     ["Иван", "Ян", "Лия", generate_russian_string(29), generate_russian_string(30), "Анна-Мария"],
@@ -57,8 +57,6 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
-# @pytest.mark.current
-@pytest.mark.register
 @pytest.mark.parametrize(
     "last_name_value",
     ["Иванов", "Ли", "Ким", generate_russian_string(29), generate_russian_string(30), "Мамин-Сибиряк"],
@@ -81,8 +79,6 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
 
 
-@pytest.mark.current
-@pytest.mark.register
 @pytest.mark.parametrize(
     "password_value",
     [
