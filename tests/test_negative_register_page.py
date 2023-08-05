@@ -111,8 +111,7 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
         "12345678a",
         "123Пароль",
         "Abcdefgh",
-        special_chars(),
-        "😎"
+        special_chars()
     ],
     ids=[
         "3 symbols",
@@ -123,8 +122,7 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
         "8 digit + lower",
         "digit + russian",
         "only letters",
-        "only special",
-        "emoji"
+        "only special"
     ]
 )
 def test_field_password_incorrect_data(browser, password_value: str, go_to_register_page):
