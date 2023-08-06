@@ -38,7 +38,6 @@ def test_register_with_correct_data(browser, faker):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.current
 @pytest.mark.parametrize(
     "first_name_value",
     [
@@ -101,6 +100,50 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
     # sleep(3)  # для контроля
     assert len(
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
+
+
+@pytest.mark.current
+@pytest.mark.parametrize(
+    "user_name_value",
+    [
+        "example@email.ru",
+        "EXAMPLE@EMAIL.RU",
+        "example123@email.ru",
+        "example@email123.ru",
+        "exam-ple@email.ru",
+        "example@e-mail.ru",
+        "exam_ple@email.ru",
+        "example@e_mail.ru",
+        "exam.ple@email.ru",
+        "example@e.mail.ru"
+    ],
+    ids=[
+        "email: lower",
+        "email: UPPER",
+        "digit in local",
+        "digit in domain",
+        "dash in local",
+        "dash in domain",
+        "underlining in local",
+        "underlining in domain",
+        "dot in local",
+        "dot in domain"
+    ]
+)
+def test_field_user_name(browser, user_name_value, go_to_register_page):
+    """
+    Проверка, что при вводе допустимых значений в поле E-mail или мобильный телефон не возникает сообщения об ошибке
+    """
+
+    register = RegisterPage(browser)
+    sleep(0.5)  # антикапча
+    register.enter_user_name(user_name_value)
+    sleep(0.5)  # антикапча
+    register.click_to_register_button()
+
+    assert len(
+        register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
+    register.clear_registration_form()  # очистка полей формы
 
 
 @pytest.mark.parametrize(
