@@ -59,7 +59,8 @@ def test_register_with_correct_data(browser, faker):
         "30 symbols",
         "dash",
         "UPPER",
-        "lower"]
+        "lower"
+    ]
 )
 def test_field_first_name(browser, first_name_value, go_to_register_page):
     """
