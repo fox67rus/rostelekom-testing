@@ -59,6 +59,30 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
+@pytest.mark.current
+@pytest.mark.parametrize(
+    "last_name_value",
+    ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars(), "Мамин Сибиряк"],
+    ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars", "space"]
+)
+def test_field_first_name(browser, last_name_value, go_to_register_page):
+    """
+    Проверка, что при вводе недопустимых значений в поле Фамилия возникает сообщение об ошибке
+    """
+
+    register = RegisterPage(browser)
+    sleep(0.5)  # антикапча
+    register.enter_last_name(last_name_value)
+
+    assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
+    assert register.get_meta_error_message()[
+               0] == 'Необходимо заполнить поле кириллицей. От 2 до 30 символов.', 'Не верное сообщение об ошибке'
+    # sleep(3)  # для контроля
+
+    assert register.get_header_h1_text() == 'Регистрация', 'Выполнен переход на другую страницу'
+    register.clear_registration_form()  # очистка полей формы
+
+
 @pytest.mark.parametrize(
     "user_name_value",
     ["example@email",
