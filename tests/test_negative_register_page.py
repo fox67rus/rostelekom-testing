@@ -59,7 +59,6 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
-@pytest.mark.current
 @pytest.mark.parametrize(
     "last_name_value",
     ["А", generate_russian_string(31), "Jordan", chinese_chars(), "12345", special_chars(), "Мамин Сибиряк"],
