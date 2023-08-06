@@ -62,7 +62,7 @@ def test_field_first_name(browser, first_name_value, go_to_register_page):
 @pytest.mark.current
 @pytest.mark.parametrize(
     "last_name_value",
-    ["А", generate_russian_string(31), "Michael", chinese_chars(), "12345", special_chars(), "Мамин Сибиряк"],
+    ["А", generate_russian_string(31), "Jordan", chinese_chars(), "12345", special_chars(), "Мамин Сибиряк"],
     ids=["1 symbol", "31 symbol", "in English", "china", "digit", "special_chars", "space"]
 )
 def test_field_first_name(browser, last_name_value, go_to_register_page):
