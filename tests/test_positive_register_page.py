@@ -182,3 +182,45 @@ def test_field_password_correct_data(browser, password_value: str, go_to_registe
 
     # sleep(3)  # для контроля
     register.clear_registration_form()  # очистка полей формы
+
+
+@pytest.mark.current
+@pytest.mark.parametrize(
+    "password_value, password_confirm_value",
+    [
+        ("123456Ab", "123456Ab"),
+        ("1234567Ab", "1234567Ab"),
+        ("123456789QwertyAsdf", "123456789QwertyAsdf"),
+        ("123456789QwertyAsdfg", "123456789QwertyAsdfg"),
+        ("`~@#$%^&*()_+|{-=Ab", "`~@#$%^&*()_+|{-=Ab"),
+        ("Abc123deF", " Abc123deF"),
+        ("Abc123deF", "Abc123deF ")
+    ],
+    ids=[
+        "8 symbols (digit + upper + lower)",
+        "9 symbols (digit + upper + lower)",
+        "19 symbols (digit + upper + lower)",
+        "20 symbols (digit + upper + lower)",
+        "19 symbols (special + upper + lower)",
+        "begin space",
+        "end space"
+    ]
+)
+def test_field_password_confirm_correct_data(browser, password_value: str, password_confirm_value: str,
+                                             go_to_register_page):
+    """
+    Проверка, что при вводе допустимых значений в поле Подтверждение пароля не возникает сообщений об ошибке """
+    register = RegisterPage(browser)
+    assert register.get_header_h1_text() == 'Регистрация', "Открыта не страница регистрации"
+    sleep(0.5)  # антикапча
+    register.enter_password(password_value)
+    sleep(0.5)  # антикапча
+    register.enter_password_confirm(password_confirm_value)
+    sleep(0.5)  # антикапча
+    register.click_to_register_button()
+
+    assert len(
+        register.get_meta_error_message()) == 3, 'Появилось сообщение об ошибке'
+
+    # sleep(3)  # для контроля
+    register.clear_registration_form()  # очистка полей формы
