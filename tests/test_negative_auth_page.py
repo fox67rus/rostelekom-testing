@@ -6,8 +6,9 @@ from selenium.webdriver.common.by import By
 from config import *
 from pages.auth_page import AuthPage
 
+pytestmark = [pytest.mark.negative, pytest.mark.auth]  # маркировка всех тестов модуля
 
-@pytest.mark.auth
+
 def test_login_with_invalid_email(browser):
     """
     Проверка авторизации несуществующего пользователя по электронной почте с помощью кнопки Войти
@@ -26,7 +27,6 @@ def test_login_with_invalid_email(browser):
     assert auth.get_form_error_message_text() == 'Неверный логин или пароль'
 
 
-@pytest.mark.auth
 def test_login_with_empty_data(browser):
     """
     Проверка авторизации с пустым именем пользователя и паролем
