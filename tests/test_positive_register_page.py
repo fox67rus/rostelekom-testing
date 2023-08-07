@@ -20,10 +20,8 @@ def test_register_with_correct_data(browser, faker):
     assert 'registration' in browser.current_url
     register = RegisterPage(browser)
     sleep(0.5)
-    # register.enter_first_name('Михаил')
     register.enter_first_name(faker.first_name())
     sleep(0.5)
-    # register.enter_last_name('Булгаков')
     register.enter_last_name(faker.last_name())
     sleep(0.5)
     register.enter_user_name('xaset20266@naymedia.com')
@@ -115,19 +113,27 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
         "exam_ple@email.ru",
         "example@e_mail.ru",
         "exam.ple@email.ru",
-        "example@e.mail.ru"
+        "example@e.mail.ru",
+        "+79876543210",
+        "89876543210",
+        "+375987654321"
+
     ],
     ids=[
         "email: lower",
         "email: UPPER",
-        "digit in local",
-        "digit in domain",
+        "email:digit in local",
+        "email:digit in domain",
         "dash in local",
         "dash in domain",
         "underlining in local",
         "underlining in domain",
         "dot in local",
-        "dot in domain"
+        "dot in domain",
+        "phone RUS +7",
+        "phone RUS 8",
+        "phone Belarus +375"
+
     ]
 )
 def test_field_user_name(browser, user_name_value, go_to_register_page):
