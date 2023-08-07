@@ -19,6 +19,8 @@
     ```bash
     python -m pytest -rA tests/  # запуск всех тестов из папки tests с выводом сводной информации о результатах
     python -m pytest -v -m smoke  # запуск тестов проверки основного функционала
+    python -m pytest -rA -m "register and positive"  # запуск позитивных тестов страницы регистрации
+
     ```
    некоторые ключи pytest для запуска тестов:
    - <code>pytest -v</code> подробное описание ошибок
