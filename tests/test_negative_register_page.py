@@ -82,6 +82,7 @@ def test_field_first_name(browser, last_name_value, go_to_register_page):
     register.clear_registration_form()  # очистка полей формы
 
 
+@pytest.mark.current
 @pytest.mark.parametrize(
     "user_name_value",
     ["example@email",
@@ -92,17 +93,25 @@ def test_field_first_name(browser, last_name_value, go_to_register_page):
      "@email.ru",
      "example@",
      "имя@домен.рф",
-     "Miles.O'Brian@example.com"
+     "Miles.O'Brian@example.com",
+     "+7987654321",
+     "+798765432100",
+     "+375987654321",
+     "+37598765432100"
      ],
     ids=["email: no dot in domain",
          "email: 320+ symbols",
          "email: no @",
          "email: space in local",
-         "email: space in domen",
+         "email: space in domain",
          "email: empty local",
-         "email: empty domen",
+         "email: empty domain",
          "email: russian_chars",
-         "apostrophe"
+         "email: apostrophe",
+         "phone Russia: without last digit",
+         "phone Russia: 11 digit",
+         "phone Belarus: without last digit",
+         "phone Belarus: 11 digit"
          ]
 )
 def test_field_user_name(browser, user_name_value, go_to_register_page):
