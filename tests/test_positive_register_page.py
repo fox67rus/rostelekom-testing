@@ -100,7 +100,6 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
         register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
 
 
-@pytest.mark.current
 @pytest.mark.parametrize(
     "user_name_value",
     [
@@ -122,14 +121,14 @@ def test_field_last_name(browser, last_name_value, go_to_register_page):
     ids=[
         "email: lower",
         "email: UPPER",
-        "email:digit in local",
-        "email:digit in domain",
-        "dash in local",
-        "dash in domain",
-        "underlining in local",
-        "underlining in domain",
-        "dot in local",
-        "dot in domain",
+        "email: digit in local",
+        "email: digit in domain",
+        "email: dash in local",
+        "email: dash in domain",
+        "email: underlining in local",
+        "email: underlining in domain",
+        "email: dot in local",
+        "email: dot in domain",
         "phone RUS +7",
         "phone RUS 8",
         "phone Belarus +375"
@@ -171,7 +170,7 @@ def test_field_user_name(browser, user_name_value, go_to_register_page):
 )
 def test_field_password_correct_data(browser, password_value: str, go_to_register_page):
     """
-    Проверка, что при вводе недопустимых значений в поле Пароль возникает сообщение об ошибке
+    Проверка, что при вводе допустимых значений в поле Пароль не возникает сообщений об ошибке
     """
     register = RegisterPage(browser)
     assert register.get_header_h1_text() == 'Регистрация', "Открыта не страница регистрации"
