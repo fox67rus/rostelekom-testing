@@ -14,11 +14,11 @@ class BasePage:
     def go_to_site(self):
         return self.driver.get(self.base_url)
 
-    def find_element(self, locator, time=10):
+    def find_element(self, locator, time=5):
         return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
                                                       message=f'Not found {locator}')
 
-    def find_elements(self, locator, time=10):
+    def find_elements(self, locator, time=5):
         return WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator),
                                                       message=f'Not found {locator}')
 
