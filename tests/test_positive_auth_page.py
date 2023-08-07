@@ -7,8 +7,9 @@ from config import *
 from pages.auth_page import AuthPage
 from pages.user_page import UserPage
 
+pytestmark = [pytest.mark.positive, pytest.mark.auth]  # маркировка всех тестов модуля
 
-@pytest.mark.auth
+
 def test_open_auth_page(browser):
     """
     Проверка корректного открытия формы авторизации
@@ -19,7 +20,6 @@ def test_open_auth_page(browser):
     # sleep(5)  # для контроля
 
 
-@pytest.mark.auth
 def test_active_tab_is_phone(browser):
     """
     Проверка, что по умолчанию выбран таб авторизации по телефону
@@ -30,7 +30,6 @@ def test_active_tab_is_phone(browser):
 
 
 @pytest.mark.smoke
-@pytest.mark.auth
 def test_login_with_email_on_button_click(browser):
     """
     Проверка авторизации существующего пользователя по электронной почте с помощью кнопки Войти
@@ -53,7 +52,6 @@ def test_login_with_email_on_button_click(browser):
     sleep(5)  # для контроля
 
 
-@pytest.mark.auth
 def test_auto_change_tab_email(browser):
     """
     Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
@@ -66,7 +64,6 @@ def test_auto_change_tab_email(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_auto_change_tab_login(browser):
     """
     Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
@@ -79,7 +76,6 @@ def test_auto_change_tab_login(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_auto_change_tab_ls(browser):
     """
     Проверка, что при вводе лицевого счёта таб выбора аутентификации меняется на Лицевой счёт
@@ -94,7 +90,6 @@ def test_auto_change_tab_ls(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_auto_change_tab_phone_from_login(browser):
     """
     Проверка, что при вводе номера телефона на вкладке Логин таб выбора аутентификации автоматически меняется на Номер
@@ -115,7 +110,6 @@ def test_auto_change_tab_phone_from_login(browser):
     assert auth.get_active_tab_text() == "Телефон"
 
 
-@pytest.mark.auth
 def test_open_user_agreement_on_link(browser):
     """
     Проверка, что при нажатии на ссылку открывается пользовательское соглашение
@@ -137,7 +131,6 @@ def test_open_user_agreement_on_link(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_open_vk_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Вконтакте осуществляется переход на страницу соцсети
@@ -149,7 +142,6 @@ def test_open_vk_auth_on_click(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_open_ok_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Одноклассники осуществляется переход на страницу соцсети
@@ -161,7 +153,6 @@ def test_open_ok_auth_on_click(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_open_mail_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Mail осуществляется переход на страницу соцсети
@@ -173,7 +164,6 @@ def test_open_mail_auth_on_click(browser):
     # sleep(3)  # для контроля
 
 
-@pytest.mark.auth
 def test_open_yandex_auth_on_click(browser):
     """
     При нажатии на кнопку авторизации через Яндекс осуществляется переход на страницу соцсети
@@ -185,7 +175,6 @@ def test_open_yandex_auth_on_click(browser):
 
 
 @pytest.mark.smoke
-@pytest.mark.auth
 def test_open_page_reset_password_on_link_click(browser):
     """
     Проверка корректного открытия страницы Восстановления пароля при нажатии на ссылку
@@ -196,7 +185,6 @@ def test_open_page_reset_password_on_link_click(browser):
     assert 'login-actions/reset-credentials' in browser.current_url
 
 
-@pytest.mark.auth
 @pytest.mark.smoke
 def test_open_page_registration_on_link_click(browser):
     """
