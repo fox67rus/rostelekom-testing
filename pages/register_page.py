@@ -48,7 +48,7 @@ class RegisterPage(BasePage):
 
     def get_meta_error_message(self) -> list:
         error_message_text = []
-        for element in self.find_elements(RegisterPageLocators.LOCATOR_REGISTER_PAGE_META_ERROR):
+        for element in self.find_elements(RegisterPageLocators.LOCATOR_REGISTER_PAGE_META_ERROR, time=3):
             error_message_text.append(element.text)
         return error_message_text
 
