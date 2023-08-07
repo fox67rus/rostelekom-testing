@@ -178,7 +178,8 @@ def test_field_password_correct_data(browser, password_value: str, go_to_registe
     register.enter_password(password_value)
     sleep(0.5)  # антикапча
     register.click_to_register_button()
-    assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
+    assert len(
+        register.get_meta_error_message()) == 4, 'Появилось сообщение об ошибке'
 
     # sleep(3)  # для контроля
     register.clear_registration_form()  # очистка полей формы
