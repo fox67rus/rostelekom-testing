@@ -184,7 +184,6 @@ def test_field_password_correct_data(browser, password_value: str, go_to_registe
     register.clear_registration_form()  # очистка полей формы
 
 
-@pytest.mark.current
 @pytest.mark.parametrize(
     "password_value, password_confirm_value",
     [
