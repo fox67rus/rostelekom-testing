@@ -166,10 +166,10 @@ def test_field_password_incorrect_data(browser, password_value: str, go_to_regis
     sleep(0.5)  # антикапча
     register.enter_password(password_value)
 
-    uppers = [char for char in password_value if 65 <= ord(char) <= 90]  # заглавные буквы в пароле
-    lowers = [char for char in password_value if 97 <= ord(char) <= 122]  # строчные буквы в пароле
-    rus_letters = [char for char in password_value if char.lower() in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']
-    digit_and_spec = [char for char in password_value if char in '0123456789~`!@#$%^&*()_+?:"{}[];’']
+    uppers = upper_in_str(password_value)  # заглавные буквы в пароле
+    lowers = lower_in_str(password_value)  # строчные буквы в пароле
+    rus_letters = rus_letters_in_str(password_value)  # русские символы в пароле
+    digit_and_spec = digit_and_spec_in_str(password_value)  # цифры или спецсимволы в пароле
 
     assert register.get_meta_error_message()[0], 'Отсутствует сообщение об ошибке'
 
@@ -194,7 +194,6 @@ def test_field_password_incorrect_data(browser, password_value: str, go_to_regis
     register.clear_registration_form()  # очистка полей формы
 
 
-@pytest.mark.current
 @pytest.mark.parametrize(
     "password_value, password_confirm_value",
     [
