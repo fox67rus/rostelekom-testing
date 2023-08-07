@@ -19,5 +19,25 @@ def special_chars(length=10):
     return ''.join(random.choice(chars) for i in range(length))
 
 
+def upper_in_str(text) -> bool:
+    if [char for char in text if 65 <= ord(char) <= 90]:
+        return True
+
+
+def lower_in_str(text) -> bool:
+    if [char for char in text if 97 <= ord(char) <= 122]:
+        return True
+
+
+def rus_letters_in_str(text) -> bool:
+    if [char for char in text if char.lower() in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']:
+        return True
+
+
+def digit_and_spec_in_str(text) -> bool:
+    if [char for char in text if char in '0123456789~`!@#$%^&*()_+?:"{}[];’']:
+        return True
+
+
 if __name__ == '__main__':
     pass
