@@ -187,7 +187,7 @@ def test_field_password_incorrect_data(browser, password_value: str, go_to_regis
         assert register.get_meta_error_message()[
                    0] == 'Пароль должен содержать хотя бы 1 спецсимвол или хотя бы одну цифру'
 
-    print(f'{password_value=}, {register.get_meta_error_message()[0]}')  # для отладки
+    # print(f'{password_value=}, {register.get_meta_error_message()[0]}')  # для отладки
     # sleep(3)  # для контроля
 
     assert register.get_header_h1_text() == 'Регистрация'
