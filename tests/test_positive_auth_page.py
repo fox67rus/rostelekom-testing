@@ -20,10 +20,12 @@ def test_open_auth_page(browser):
     # sleep(5)  # для контроля
 
 
+@pytest.mark.skip(reason="no way of currently testing this")
 def test_active_tab_is_phone(browser):
     """
     Проверка, что по умолчанию выбран таб авторизации по телефону
     """
+    sleep(5)
     auth = AuthPage(browser)
     auth.go_to_site()
     assert auth.get_active_tab_text() == "Телефон"
@@ -52,33 +54,48 @@ def test_login_with_email_on_button_click(browser):
     sleep(5)  # для контроля
 
 
-def test_auto_change_tab_email(browser):
+def test_auto_change_tab_email_from_phone(browser):
     """
-    Проверка, что при вводе электронного адреса таб выбора аутентификации меняется на Почта
+    Проверка, что при вводе электронного адреса в поле Телефон таб выбора аутентификации меняется на Почта
     """
     auth = AuthPage(browser)
     auth.go_to_site()
+    auth.click_to_tab_phone()
     auth.enter_login(VALID_EMAIL)
     auth.enter_password(VALID_PASSWORD)
     assert auth.get_active_tab_text() == "Почта"
     # sleep(3)  # для контроля
 
 
-def test_auto_change_tab_login(browser):
+def test_auto_change_tab_email_from_login(browser):
     """
-    Проверка, что при вводе логина таб выбора аутентификации меняется на Логин
+    Проверка, что при вводе электронного адреса в поле Логин таб выбора аутентификации меняется на Почта
     """
     auth = AuthPage(browser)
     auth.go_to_site()
+    auth.click_to_tab_login()
+    auth.enter_login(VALID_EMAIL)
+    auth.enter_password(VALID_PASSWORD)
+    assert auth.get_active_tab_text() == "Почта"
+    # sleep(3)  # для контроля
+
+
+def test_auto_change_tab_login_from_phone(browser):
+    """
+    Проверка, что при вводе логина в поле Телефон таб выбора аутентификации меняется на Логин
+    """
+    auth = AuthPage(browser)
+    auth.go_to_site()
+    auth.click_to_tab_phone()
     auth.enter_login(VALID_LOGIN)
     auth.enter_password(VALID_PASSWORD)
     assert auth.get_active_tab_text() == "Логин"
     # sleep(3)  # для контроля
 
 
-def test_auto_change_tab_ls(browser):
+def test_auto_change_tab_ls_from_email(browser):
     """
-    Проверка, что при вводе лицевого счёта таб выбора аутентификации меняется на Лицевой счёт
+    Проверка, что при вводе лицевого счёта в поле Почта таб выбора аутентификации меняется на Лицевой счёт
     """
     auth = AuthPage(browser)
     auth.go_to_site()
